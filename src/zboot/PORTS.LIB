@@ -1,0 +1,97 @@
+;	PORTS.LIB
+;	I/O Port addresses for Visual 1050          
+;
+;	Copyright (c) Visual Technology, 1983
+;
+; Revision history:
+;	01 (IRN) Initial- based on cpm/3 for Ontel Amigo
+;
+
+real$1050	equ	true
+keyboard$1050	equ	true
+banked		equ	true 
+
+; Boot Mode flip-flop
+;
+p$boot	equ 0D0h		; Boot prom enable/disable
+p$bank$select	equ	0d0h	; Select bank
+;
+; Interrupt vectors
+;
+int$port	equ	0C0h
+int$initial	equ	010h
+int$mask	equ	1110$1111b	; All on except VERT
+all$ints	equ	1111$1111b	; All interrupts enabled
+vert$clear	equ	0A0h		; Clear vert interrupt
+;
+; Display section 8255 parallel interface
+;
+p$disp$in	equ 84h	; port a from display
+p$disp$out	equ 85h	; port b to display
+p$disp$c	equ 86h	; port c from/to display
+p$disp$control	equ 87h	; control port for display
+clear$6502	equ 0b0h
+; Keyboard 8251 - keyboard input, loudspeaker output
+;
+p$kb$data	equ 88h	; in= kb data, out= loudspeaker data
+p$kb$control	equ 89h	; kb control/status
+
+; RS-232 8251
+;
+p$aux1$data	equ 8Ch	; rs-232 xmit/recv data
+p$aux1$control	equ 8Dh	; rs-232 control/status
+
+; Miscellaneous 8255
+;
+p$disk$bits	equ 90h	; diskette bits
+p$printer	equ 91h	; printer bits
+p$misc		equ 92h	; miscellaneous bits
+p$8255$control	equ 93h	; 8255 control port
+
+; MB8877 Floppy disk formatter/controller
+;
+p$disk$control	equ 94h	; mb8877 status/command
+p$disk$track	equ 95h	; mb8877 track
+p$disk$sector	equ 96h	; mb8877 sector
+p$disk$data	equ 97h	; mb8877 data
+
+; Winchester Interface to Xebec Controller
+;
+p$winch$data	equ 0E0h	; Winchester data
+p$winch$control	equ 0E1h	; Winchester control
+
+;
+; Real time clock
+;
+
+p$clk$porta	equ 09Ch ; Port A
+p$clk$portb	equ 09Dh ; Port B
+p$clk$portc     equ 09Eh ; Port C
+p$clk$control   equ 09Fh ; Control port
+
+add$write$hi	equ	09h
+add$write$lo	equ	08h
+
+read$hi    	equ	0DH
+read$lo		equ	0CH
+write$hi	equ	0BH
+write$lo	equ	0AH
+
+rtc$select	equ	0fh
+rtc$read	equ	91h
+rtc$write	equ	81h
+
+;  Display masks
+;
+disp$ready$rcv	equ	0000$0001b	; ready to receive
+disp$ready$xmit	equ	0000$1000b	; ready to xmit
+disp$req$rcv	equ	0100$0000b	; req rcv from display
+disp$req$xmit	equ	1000$0000b	; req xmit to display
+disp$portc$cons	equ	0001$0100b	; port c constants
+
+;  Lpt masks
+;
+misc$lpt$strobe	equ	0000$0001b	; handshake strobe
+misc$lpt$avail	equ	0010$0000b	; lpt available
+misc$lpt$nobusy	equ	0001$0000b	; finished printing
+
